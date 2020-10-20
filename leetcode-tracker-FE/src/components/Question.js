@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import axios from 'axios';
 import './index.css'
 
 class Question extends Component {
@@ -10,7 +11,7 @@ class Question extends Component {
     this.state = {
       name: '',
       questionName: '',
-      questionDifficulty: '',
+      questionDifficulty: 'Easy',
       questionLink: ''
     }
 
@@ -45,14 +46,25 @@ class Question extends Component {
     console.log("----------STATE----------");
     console.log(`Name: ${this.state.name}`);
     console.log(`questionName: ${this.state.questionName}`);
-    console.log(`questionDifficulty: ${this.state.questionDifficulty}`);
+    console.log(`questionDifficulty : ${this.state.questionDifficulty}`);
     console.log(`questionLink: ${this.state.questionLink}`);
     console.log("-------------------------");
+
+    axios.post('http://192.168.0.29:8000/create-question', {
+      name: this.state.name,
+      questionName:  this.state.questionName,
+      questionDifficulty: this.state.questionDifficulty,
+      questionLink: this.state.questionLink
+    }).then(res => {
+      console.log(res)
+    })
+
+
 
     this.setState({
       name: "",
       questionName: "",
-      questionDifficulty: "",
+      questionDifficulty: "Easy",
       questionLink: "",
     });
   }
