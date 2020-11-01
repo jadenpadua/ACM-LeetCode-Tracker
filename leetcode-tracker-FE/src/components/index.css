@@ -2,3 +2,8 @@
     color: red;
     border-color: red;
 }
+
+.card-container {
+    display: flex;
+    justify-content: center;
+}

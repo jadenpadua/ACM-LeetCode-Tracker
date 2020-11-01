@@ -12,11 +12,17 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import EditEntry from "./components/EditEntry"
 import Question from "./components/Question"
-import QuestionList from "./components/QuestionList"
+import QuestionChecker from "./components/QuestionChecker"
+import Test from "./components/Test"
+import FoundQuestion from "./components/FoundQuestion"
 
 import "./App.css";
 
 const App = () => {
+
+
+
+
 
   const navLink = {
     color: "white"
@@ -52,8 +58,8 @@ const App = () => {
               </Nav> */}
 
                 <Nav>
-                  <Link to={"/question-list"} className="nav-link" style={navLink}>
-                    Question List
+                  <Link to={"/question-checker"} className="nav-link" style={navLink}>
+                    Question Checker
                   </Link>
                 </Nav>
               </Nav>
@@ -69,7 +75,9 @@ const App = () => {
                   <Route exact path="/" component={Question} />
                   <Route path="/submit-host-form" component={Question} />
                   <Route path="/edit-entry/:id" component={EditEntry} />
-                  <Route path="/question-list" component={QuestionList} />
+                  <Route path="/question-checker" component={QuestionChecker} />
+                  <Route path="/form-submitted" component={Test} />
+                  <Route path="/found-question" component={FoundQuestion} />
                 </Switch>
               </div>
             </Col>

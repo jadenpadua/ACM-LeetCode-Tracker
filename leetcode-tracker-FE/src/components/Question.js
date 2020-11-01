@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from 'axios';
+import Test from "./Test.js"
 import './index.css'
+import { Redirect } from "react-router-dom";
 
 class Question extends Component {
   constructor(props) {
@@ -12,7 +14,8 @@ class Question extends Component {
       name: '',
       questionName: '',
       questionDifficulty: 'Easy',
-      questionLink: ''
+      questionLink: '',
+      isSubmitted: false,
     }
 
     this.onNameChange = this.onNameChange.bind(this);
@@ -40,7 +43,17 @@ class Question extends Component {
   }
 
   onSubmit(e) {
+
+
+    if (this.state.isSubmitted) {
+      console.log("You already submitted something")
+      return null;      
+    }
+
+
     e.preventDefault();
+
+    this.setState({isSubmitted: true})
 
     console.log("Form Submitted!");
     console.log("----------STATE----------");
@@ -50,7 +63,7 @@ class Question extends Component {
     console.log(`questionLink: ${this.state.questionLink}`);
     console.log("-------------------------");
 
-    axios.post('http://192.168.0.29:8000/create-question', {
+    axios.post('http://localhost:8000/create-question', {
       name: this.state.name,
       questionName:  this.state.questionName,
       questionDifficulty: this.state.questionDifficulty,
@@ -70,7 +83,17 @@ class Question extends Component {
   }
 
   render() {
+
+    if (this.state.isSubmitted) {
+      console.log("redirecting")
+      return <Redirect to = {{ pathname: "/form-submitted" }}  />;
+    }
+
+
+
+
     return (
+
       <div className="form-wrapper mt-5">
         <Form onSubmit={this.onSubmit}>
           <Form.Group controlId="Name">
@@ -126,6 +149,7 @@ class Question extends Component {
             Submit Question
           </Button>
         </Form>
+
       </div>
     );
   }
