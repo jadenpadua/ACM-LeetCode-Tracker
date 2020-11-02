@@ -63,7 +63,7 @@ class Question extends Component {
     console.log(`questionLink: ${this.state.questionLink}`);
     console.log("-------------------------");
 
-    axios.post('http://localhost:8000/create-question', {
+    axios.post('https://api.leetcodetracker.acmucsd.com/create-question', {
       name: this.state.name,
       questionName:  this.state.questionName,
       questionDifficulty: this.state.questionDifficulty,

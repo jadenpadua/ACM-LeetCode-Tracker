@@ -23,7 +23,7 @@ const QuestionChecker = (props) => {
 
     console.log(postObj);
 
-    axios.post("http://localhost:8000/find-question", postObj).then((res) => {
+    axios.post("https://api.leetcodetracker.acmucsd.com/find-question", postObj).then((res) => {
       console.log(res.data);
       setQuestionData(res.data);
       setisSubmited(true);
